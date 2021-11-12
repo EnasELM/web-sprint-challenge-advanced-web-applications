@@ -22,7 +22,6 @@ const EditForm = (props)=> {
         .get(`/articles/${editId}`)
         .then((resp) => {
             setArticle(resp.data);
-            console.log(article)
         })
         .catch((err) => {
           console.log(err);
