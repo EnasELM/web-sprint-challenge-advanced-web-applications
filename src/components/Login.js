@@ -52,7 +52,7 @@ const Login = (props) => {
           />
           <button id="submit" type="submit">Log in</button>
         </form>
-        {error && <p id="error"> sorry your password or username is wrong please try again {error}</p>} 
+        {error && <p id="error"> Sorry your username or password was incorrect try again</p>} 
       </div>
         </ModalContainer>
     </ComponentContainer>);
