@@ -1,12 +1,59 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
-const Login = () => {
+const initialValues = {username: "", password: ""};
+
+const Login = (props) => {
+    const{push} = useHistory();    
+    const [formValues, setFormValues] = useState(initialValues);
+    const [error, setError] = useState('');
+    
+    const handelChanges = (e) => {
+        setFormValues({...formValues, [e.target.name]: e.target.value});
+    }
+
+    const handelSubmit = (e) => {
+        e.preventDefault();
+        axios
+           .post("http://localhost:5000/api/login", formValues)
+           .then((res) => {
+               //set res.data.token (token) to localStorage
+               //route user to the home page /view
+               localStorage.setItem("token",res.data.token);
+               push("/view");
+           })
+           .catch((err) => setError(err.message)
+           )
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+            <div>
+        <form onSubmit={handelSubmit}>
+          <label htmlFor="username"> Username  </label>
+          <input
+            id="username"
+            type="text"
+            name="username"
+            value={formValues.username}
+            onChange={handelChanges}
+          />
+          <label htmlFor="password"> Password  </label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={formValues.password}
+            onChange={handelChanges}
+          />
+          <button id="submit" type="submit">Log in</button>
+        </form>
+        {error && <p id="error"> sorry your password or username is wrong please try again {error}</p>} 
+      </div>
         </ModalContainer>
     </ComponentContainer>);
 }
