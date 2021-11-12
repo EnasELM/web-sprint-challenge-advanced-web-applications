@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import PrivateRoute from './PrivateRoute';
 import styled from 'styled-components';
 
+
 import Header from './Header';
 import LambdaHeader from './LambdaHeader';
 import View from './View';
@@ -17,7 +18,10 @@ const App = () => {
       <RouteContainer>
         <Route exact path="/">
           <Login/>
-        </Route>          
+        </Route>  
+        <PrivateRoute exact path='/view' component={View}/> 
+        <Route path="/login" component={Login}/> 
+        <Route path="/logout" component={Logout}/>      
       </RouteContainer>
     </AppContainer>
   )
