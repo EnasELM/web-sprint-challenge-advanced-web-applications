@@ -27,8 +27,6 @@ const View = (props) => {
             .then((resp) => {
                 const filterArticles = resp.data.filter((item) => Number(id) !== item.id);
                 setArticles(filterArticles);
-                 
-            //push("/view");
             })
             .catch((err) => {
             console.log(err);
@@ -36,6 +34,15 @@ const View = (props) => {
     }
 
     const handleEdit = (article) => {
+        axiosWithAuth()
+        .put(`/articles/${editId}`,article)
+        .then((resp) => {
+            setArticles(resp.data);
+            console.log(articles)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     const handleEditSelect = (id)=> {
