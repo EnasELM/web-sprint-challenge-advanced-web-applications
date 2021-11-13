@@ -19,6 +19,7 @@ const App = () => {
         <Route exact path="/">
           <Login/>
         </Route>  
+        {/* *Build  utilities to restrict access to private routes.* */}
         <PrivateRoute exact path='/view' component={View}/> 
         <Route path="/login" component={Login}/> 
         <Route path="/logout" component={Logout}/>      

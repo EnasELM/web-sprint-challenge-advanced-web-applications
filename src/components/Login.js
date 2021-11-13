@@ -5,6 +5,8 @@ import styled from 'styled-components';
 
 const initialValues = {username: "", password: ""};
 
+// * a login form to authenticate  users *
+
 const Login = (props) => {
     const{push} = useHistory();    
     const [formValues, setFormValues] = useState(initialValues);
@@ -16,7 +18,7 @@ const Login = (props) => {
 
     const handelSubmit = (e) => {
         e.preventDefault();
-        axios
+        axios//returns a the current authentication information of the user
            .post("http://localhost:5000/api/login", formValues)
            .then((res) => {
                //set res.data.token (token) to localStorage
@@ -33,25 +35,28 @@ const Login = (props) => {
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
             <div>
-        <form onSubmit={handelSubmit}>
-          <label htmlFor="username"> Username  </label>
-          <input
+        <FormGroup onSubmit={handelSubmit}>
+          <Label htmlFor="username"> Username  </Label>
+          <Input
             id="username"
             type="text"
             name="username"
             value={formValues.username}
             onChange={handelChanges}
           />
-          <label htmlFor="password"> Password  </label>
-          <input
+          <Label htmlFor="password"> Password  </Label>
+          <Input
             id="password"
             type="password"
             name="password"
             value={formValues.password}
             onChange={handelChanges}
           />
-          <button id="submit" type="submit">Log in</button>
-        </form>
+          <Button id="submit" type="submit">Log in</Button>
+        </FormGroup>
+
+                 {/* Display error message with incorrect username or password */}
+
         {error && <p id="error"> Sorry your username or password was incorrect try again</p>} 
       </div>
         </ModalContainer>

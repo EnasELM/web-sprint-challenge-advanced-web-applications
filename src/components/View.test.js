@@ -1,14 +1,20 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import View from './View';
 
-const article = []
+import View from './View';
+import  mockGitArticle from '../services/articleServices';
+jest.mock('../services/articleServices');
+
+
+
 
 test("renders zero articles without errors", async () => {
-    //render(<View articles={article} />);
+        
+    
 });
 
 test("renders three articles without errors", async ()=> {
+    
 });
 
 //Task List

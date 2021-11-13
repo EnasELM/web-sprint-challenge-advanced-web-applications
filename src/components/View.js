@@ -15,12 +15,14 @@ const View = (props) => {
     const { id } = useParams();
     const { push } = useHistory();
 
+    //the component mounts 
     useEffect(() => {
         articleService().then((article)=>{
             setArticles(...articles,article) 
         })  
     },[id]);
 
+    //a http request is made to delete the article with the included id
     const handleDelete = (id) => {
         axiosWithAuth()
             .delete(`/articles/${id}`)

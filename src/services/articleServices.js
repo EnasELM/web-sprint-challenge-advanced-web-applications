@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
+//make an authenticated call to retrieve and return all articles from the server
 const articleService = async ()=> {
    const resp = await axiosWithAuth()
       .get("/articles")
